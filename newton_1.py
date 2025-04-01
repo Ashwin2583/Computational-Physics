@@ -11,17 +11,18 @@ def df(x):
     return f
 
 roots = []
-for i in range(1,10):
+for i in range(1,100):
     x=i
     while True:
         a=x-(f(x)/df(x))
         if (abs(x-a)<0.0001):
             break
         x=a
-    roots.append(a)
+    roots.append(round(a,4))
 
+print(np.average(roots))
 plt.figure()
-plt.plot(range(1,10),roots)
+plt.plot(range(1,100),roots)
 plt.grid()
 plt.show()
 
