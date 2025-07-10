@@ -1,1 +1,3 @@
-# Mathemtical Physics
+# Computational Physics
+
+## Mathematical Physics
