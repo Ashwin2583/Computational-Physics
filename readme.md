@@ -8,4 +8,5 @@
 >> **[Finding roots using Bisection](Mathematical-Physics\bisection.py)**
 >>
 >> ### Newton-Raphson Method
- 
+>> The program inputs a single guess and give the roots of the function defined as output. This method requires both the function and derivative of that function to be defined in the program. <br>
+>> **[Finding roots using Newton-Raphson](Mathematical-Physics\newton.py)** 
