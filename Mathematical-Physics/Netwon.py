@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-#function 
+# The function is defined here 
 def f(x):
     f=x*np.sin(x) + np.cos(x)
     return f
-#derivative of the function
+
+# The derivative of the function is defined here
 def df(x):
     f=x*np.cos(x)
     return f
@@ -17,30 +18,3 @@ while True:
         break
     x=a
 print("The root of the equation is:-", a)
-
-
-
-q=[]
-w=[]
-r=[]
-for i in range (-50,50,1):
-    q.append(i)
-    w.append(f(i))
-    
-j = 0
-while j < len(q) - 1:    
-        y = q[j]
-        while True:
-             b = y -(f(y)/df(y))
-             if (abs(y-b)<0.0001 or df(y) == 0):
-                  r.append(b)
-                  break
-             y = b
-        j = j + 1
-
-plt.figure()
-plt.plot(q,w)
-plt.scatter(r,[0] * len(r),color='red', label= 'Roots')
-plt.legend()
-plt.grid(True)
-plt.show()
