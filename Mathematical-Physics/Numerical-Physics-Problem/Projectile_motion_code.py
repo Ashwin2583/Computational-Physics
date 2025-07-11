@@ -22,7 +22,7 @@ x=u*np.cos(theta)*times
 y=u*np.sin(theta)*times-0.5*g*times**2
 
 #calculating range,maximum height, and time of flight 
-#Note: The max height and time of flight can also be derived from kinematic equations without using the plots. 
+#Note: The max height and time of flight can also be derived from kinematic equations without using the plots.
 Range = u * np.cos(theta) * T
 max_height = (u * np.sin(theta)**2) / (2 * g)
 

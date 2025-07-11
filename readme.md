@@ -15,4 +15,6 @@
 >> The program inputs two guesses and gives the root of the equation as outputs. The function for which the roots are determined is defined at the top of the program. <br>
 >> **[Finding roots using Secant](Mathematical-Physics\secant.py)**
 >>
+> ## Numerical Physics Problems
+> 
 
