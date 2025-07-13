@@ -1,9 +1,10 @@
 # Computational Physics
 
+To know more about each topic visit **[Wiki](https://github.com/Ashwin2583/Computational-Physics/wiki)**. For specific topic click on the headings to visit those sections.
 ## **[Mathematical Physics](Mathematical-Physics/)**
 
 > ## [Root Finding Methods](Mathematical-Physics/Root-Finding-Algorithm/)
->> ### Bisection Method
+>> ### [Bisection Method](https://github.com/Ashwin2583/Computational-Physics/wiki/Bisection-Method)
 >> The program inputs the intervals and gives the root of the equation as outputs. The function for which the roots are determined is defined at the top of the program. <br>
 >> **[Finding roots using Bisection](Mathematical-Physics\Root-Finding-Algorithm\bisection.py)**
 >>
