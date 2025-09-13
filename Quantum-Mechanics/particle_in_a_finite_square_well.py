@@ -8,11 +8,9 @@ N = 500         # number of grid points
 a = 1e-9        # finite well width
 V0 = 50 * 1.602e-19   # well depth (50 eV in Joules)
 
-# Grid
 x = np.linspace(-L, L, N)
 dx = x[1] - x[0]
 
-# Kinetic prefactor
 coeff = -(hbar**2) / (2*m*dx**2)
 
 H = np.zeros((N,N))

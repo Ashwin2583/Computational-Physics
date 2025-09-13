@@ -65,12 +65,10 @@ for parity, s in roots:
     kappa = np.sqrt(2*m*(V_o - E))/h_cut
     if parity == "even":
         psi_even = [wavefunction(x, s, "even", k, kappa) for x in x_vals]
-        plt.plot(x_vals, psi_even, label="Even state")
-        plt.annotate("Even", xy=(0,np.max(psi_even)))
+        plt.plot(x_vals, psi_even,linestyle='-', label="Even state")
     if parity == "odd":
         psi_odd = [wavefunction(x, s, "odd", k, kappa) for x in x_vals]
-        plt.plot(x_vals, psi_odd, label="Odd state")
-        plt.annotate("Odd", xy=(0,0))
+        plt.plot(x_vals, psi_odd, linestyle='--',label="Odd state")
 
 plt.axvline(-a/2, color="k", linestyle="--")
 plt.axvline(a/2, color="k", linestyle="--")
