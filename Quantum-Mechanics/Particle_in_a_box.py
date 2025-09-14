@@ -22,15 +22,17 @@ for i in range(N):
 H = coeff*H
 eigen_value, eigen_vector = np.linalg.eigh(H)
 
+linestyles = ['-', '--', '-.', ':']
 plt.figure()
 for i in range(3):
     psi = eigen_vector[:,i]
-    plt.plot(x,psi)
+    plt.plot(x, psi, linestyle=linestyles[i % len(linestyles)], label=f"State {i+1}")
 
 plt.axvline(-a/2, color="k", linestyle="--")
 plt.axvline(a/2, color="k", linestyle="--")
 plt.xlabel("x (nm)")
 plt.ylabel("Energy / ψ(x)")
 plt.title("Infinite Square Well Eigenstates")
+plt.legend()
 plt.grid(True)
 plt.show()

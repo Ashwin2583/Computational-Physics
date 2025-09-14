@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 hbar = 1.05457e-34
 m = 9.109e-31
-L = 2e-9        # half-domain length
+L = 2e-9        # domain length
 N = 500         # number of grid points
 a = 1e-9        # finite well width
 V0 = 50 * 1.602e-19   # well depth (50 eV in Joules)
@@ -27,11 +27,11 @@ for i in range(N):
         H[i, i+1] = coeff
 
 eigen_value, eigen_vector = np.linalg.eigh(H)
-
+linestyles = ['-', '--', '-.', ':']
 plt.figure()
 for i in range(3):
     psi = eigen_vector[:,i]
-    plt.plot(x,psi, label=f"n={i}")
+    plt.plot(x,psi, linestyle=linestyles[i % len(linestyles)], label=f"State {i+1}")
 
 plt.axvline(-a/2, color="k", linestyle="--")
 plt.axvline(a/2, color="k", linestyle="--")

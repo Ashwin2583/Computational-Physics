@@ -70,6 +70,7 @@ for parity, s in roots:
         psi_odd = [wavefunction(x, s, "odd", k, kappa) for x in x_vals]
         plt.plot(x_vals, psi_odd, linestyle='--',label="Odd state")
 
+
 plt.axvline(-a/2, color="k", linestyle="--")
 plt.axvline(a/2, color="k", linestyle="--")
 plt.title("Finite Well Eigenfunctions")
