@@ -34,8 +34,8 @@ for i in range(3):
     psi_scaled = psi / norm
     plt.plot(x, psi_scaled + eigen_value[i], label=f"n={i}") #*0.2 + eigen_value[i]
 
-plt.axvline(-x_o, color="k", linestyle="--", label='x = -x₀')
-plt.axvline(x_o, color="k", linestyle="--", label='x = +x₀')
+plt.axvline(-x_o, color="k", linestyle="--")
+plt.axvline(x_o, color="k", linestyle="--")
 plt.xlabel("x (nm)")
 plt.ylabel("Energy / ψ(x)")
 plt.title("finite Square Well Eigenstates")
