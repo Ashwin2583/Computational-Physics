@@ -1,11 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy
+from scipy.special import hermite, factorial
 
 hbar = 1.05457e-34
 m = 9.109e-31
 omega = 5.34e21
 x_o = np.sqrt(hbar/(m*omega))
+print(f"oscillator length: {round(x_o*1e9, 6)} nm")
 N = 500
 L = 12*x_o
 
@@ -16,9 +17,7 @@ alpha = -(hbar**2) / (2*m*dx**2)
 H = np.zeros((N,N))
 
 for i in range(N):
-    #eta = (dx**2)*(x[i]**2)/(x_o**4)
     k = 0.5*m*(omega**2)*(x[i]**2)
-    #H[i,i] = -alpha*(2+eta)
     H[i,i] = k - 2*alpha
     if i > 0:
         H[i,i-1] = alpha
@@ -26,19 +25,39 @@ for i in range(N):
         H[i, i+1] = alpha
 
 eigen_value, eigen_vector = np.linalg.eigh(H)
+fig = plt.figure(figsize=(15,6))
+linestyles = ['-', '--', '-.', ':']
 
-plt.figure()
+ax = fig.add_subplot(1,2,1)
 for i in range(3):
     psi = eigen_vector[:,i]
     norm = np.sqrt(np.trapezoid(np.abs(psi)**2, x))
     psi_scaled = psi / norm
-    plt.plot(x, psi_scaled + eigen_value[i], label=f"n={i}") #*0.2 + eigen_value[i]
+    max_index = np.argmax(np.abs(psi_scaled))
+    if psi_scaled[max_index] < 0:
+        psi_scaled *= -1
+    ax.plot(x*1e9, psi_scaled, linestyle=linestyles[i % len(linestyles)], label=f"n={i}")
 
-plt.axvline(-x_o, color="k", linestyle="--")
-plt.axvline(x_o, color="k", linestyle="--")
-plt.xlabel("x (nm)")
-plt.ylabel("Energy / ψ(x)")
-plt.title("finite Square Well Eigenstates")
-plt.legend()
-plt.grid(True)
+ax.set_xlabel("x (nm)")
+ax.set_ylabel("ψ(x)")
+ax.set_title("Harmonic Potential Eigenstates")
+ax.legend()
+ax.grid(True)
+
+ax1 = fig.add_subplot(1,2,2)
+for n in range(3):
+    xi = x / x_o
+    Hn = hermite(n)(xi)
+    prefactor = 1.0 / (np.sqrt(2**n * factorial(n))) * (1.0/np.pi**0.25 / np.sqrt(x_o))
+    psi_n = prefactor * Hn * np.exp(-xi**2/2)
+    ax1.plot(x*1e9, psi_n, linestyle=linestyles[i % len(linestyles)], label=f"n={n}")
+
+ax1.set_title("Analytical Harmonic Potential")
+ax1.set_xlabel("x (nm)")
+ax1.set_ylabel("ψ(x)")
+ax1.legend()
+ax1.grid(True)
+
+plt.tight_layout()
+
 plt.show()

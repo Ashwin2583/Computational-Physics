@@ -22,17 +22,38 @@ for i in range(N):
 H = coeff*H
 eigen_value, eigen_vector = np.linalg.eigh(H)
 
+fig = plt.figure(figsize=(18, 15))
 linestyles = ['-', '--', '-.', ':']
-plt.figure()
+
+ax = fig.add_subplot(1,2,1)
 for i in range(3):
     psi = eigen_vector[:,i]
-    plt.plot(x, psi, linestyle=linestyles[i % len(linestyles)], label=f"State {i+1}")
+    norm = np.sqrt(np.trapezoid(np.abs(psi)**2, x))  # continuous normalization
+    psi = psi / norm
+    ax.plot(x*1e9, psi , linestyle=linestyles[i % len(linestyles)], label=f"State {i+1}")
+ax.axvline(-a*1e9/2, color="k", linestyle="--")
+ax.axvline(a*1e9/2, color="k", linestyle="--")
+ax.set_xlabel("x (nm)")
+ax.set_ylabel("ψ(x)")
+ax.set_title("Infinite Square Well Eigenstates (finite-difference method)")
+ax.legend()
+ax.grid(True)
 
-plt.axvline(-a/2, color="k", linestyle="--")
-plt.axvline(a/2, color="k", linestyle="--")
-plt.xlabel("x (nm)")
-plt.ylabel("Energy / ψ(x)")
-plt.title("Infinite Square Well Eigenstates")
-plt.legend()
-plt.grid(True)
+ax1 = fig.add_subplot(1,2,2)
+
+ax1 = fig.add_subplot(1,2,2)
+for n in range(1,4):
+    if n % 2 == 0:  # even n → sine
+        psi_n = np.sqrt(2/a) * np.sin(n*np.pi*x/a)
+    else:           # odd n → cosine
+        psi_n = np.sqrt(2/a) * np.cos(n*np.pi*x/a)
+    ax1.plot(x*1e9,psi_n, linestyle=linestyles[n % len(linestyles)], label=f"State {n+1}")
+ax1.axvline(-a*1e9/2, color="k", linestyle="--")
+ax1.axvline(a*1e9/2, color="k", linestyle="--")
+ax1.set_xlabel("x (nm)")
+ax1.set_ylabel("ψ(x)")
+ax1.set_title("Analytical Eigenstates")
+ax1.legend()
+ax1.grid(True)
+
 plt.show()
