@@ -6,7 +6,7 @@ To know more about each topic visit **[Wiki](https://github.com/Ashwin2583/Compu
 > ## [Root Finding Methods](Mathematical-Physics/Root-Finding-Algorithm/)
 >> ### 1. [Bisection Method](https://github.com/Ashwin2583/Computational-Physics/wiki/Bisection-Method)
 >> The program inputs the intervals and gives the root of the equation as outputs. The function for which the roots are determined is defined at the top of the program. <br>
->> **[Finding roots using Bisection](Mathematical-Physics\Root-Finding-Algorithm\bisection.py)**
+>> **[Finding roots using Bisection](Computational-Physics/Mathematical-Physics/Root-Finding-Algorithm/bisection.py)**
 >>
 >> ### 2. Newton-Raphson Method
 >> The program inputs a single guess and give the roots of the function defined as output. This method requires both the function and derivative of that function to be defined in the program. <br>
