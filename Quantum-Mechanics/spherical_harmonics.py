@@ -5,61 +5,64 @@ from scipy.special import lpmv
 import math
 
 l = int(input("Enter l: "))
-m = int(input("Enter m: "))
+m_in = int(input("Enter m: "))
 
-theta_1d = np.linspace(0, np.pi, 200)
-phi_1d = np.linspace(0, 2*np.pi, 200)
+def f(l, m, theta, phi):
+    if l == 0 and m == 0:
+        return (1/np.sqrt(4*np.pi))*np.ones_like(theta)
+    if l == 1 and m == 0:
+        return (3/(4*np.pi))*np.cos(theta)
+    if l == 1 and m == -1:
+        return math.sqrt((3/(8*np.pi))) * np.sin(theta) * np.exp(-1*1j*phi)
+    if l == 1 and m == 1:
+        return (-1)*math.sqrt((3/(8*np.pi))) * np.sin(theta) * np.exp(1*1j*phi)
+
+theta_1d = np.linspace(0, np.pi, 200)      
+phi_1d   = np.linspace(0, 2*np.pi, 200)    
 Phi, Theta = np.meshgrid(phi_1d, theta_1d, indexing='xy')
 
-def spherical_harmonics(l, m, theta, phi):
-    if m>=0:
-        legendre_poly = lpmv(m, l, np.cos(theta))
-        azimuthal_part = np.exp(1j * m * phi)
-        norm_const = np.sqrt(((2*l+1)/(4*np.pi)) * (math.factorial(l-m)/math.factorial(l+m)))
-        return norm_const * legendre_poly * azimuthal_part
-    else:
-        # Use relation Y_l^{-m} = (-1)^m * conjugate(Y_l^m)
-        return (-1)**m * np.conjugate(spherical_harmonics(l, -m, theta, phi))
+Y = f(l, m_in,Theta, Phi)
+Y_real = np.real(Y)
 
-# Amplitude
-Y_amp = np.real(spherical_harmonics(l, m, Theta, Phi))
+# Amplitude and probability density
+Y_amp  = np.abs(Y_real)
+Y_prob = Y_real**2
 
-# Probability density for coloring
-Y_prob = Y_amp**2
-
-# 3D surface coordinates (scaled by amplitude, not probability density)
+# 3D surface coordinates (radius from amplitude)
 x = Y_amp * np.sin(Theta) * np.cos(Phi)
 y = Y_amp * np.sin(Theta) * np.sin(Phi)
 z = Y_amp * np.cos(Theta)
 
-# Color mapping based on probability density
+# Shared color mapping based on probability density
 cmap = cm.plasma
-norm = colors.Normalize(vmin=0, vmax=Y_prob.max())
+norm = colors.Normalize(vmin=0.0, vmax=float(Y_prob.max()))
 sm = cm.ScalarMappable(norm=norm, cmap=cmap)
 sm.set_array([])
+
 facecolors = sm.to_rgba(Y_prob)
 
-fig = plt.figure(figsize=(15, 5))
+# Figure with three panels: 3D, 2D (theta vs phi), and polar (phi vs theta)
+fig = plt.figure(figsize=(18, 5))
 
-# 3D plot
+# 3D surface
 ax = fig.add_subplot(1, 3, 1, projection='3d')
 ax.plot_surface(x, y, z, facecolors=facecolors, linewidth=0, antialiased=False, shade=False)
-fig.colorbar(sm, ax=ax, label="Probability density")
-ax.set_title(f'Cartesian surface plot l={l} m={m}')
+fig.colorbar(sm, ax=ax, label="Probability density (Y_real^2)")
+ax.set_title(f'3D surface (real tesseral) l={l} m={m_in}')
 ax.set_xlabel("x axis"); ax.set_ylabel("y axis"); ax.set_zlabel("z axis")
 
-# colourmap plot
+# 2D map (theta vs phi)
 ax2 = fig.add_subplot(1, 3, 2)
-mesh = ax2.pcolormesh(phi_1d, theta_1d, Y_prob, cmap=cmap, norm=norm, shading='auto')
-fig.colorbar(sm, ax=ax2, label="Probability density")
+ax2.pcolormesh(phi_1d, theta_1d, Y_prob, cmap=cmap, norm=norm, shading='auto')
+fig.colorbar(sm, ax=ax2, label="Probability density (Y_real^2)")
 ax2.set_title("Angular probability (2D)")
 ax2.set_xlabel("phi"); ax2.set_ylabel("theta")
 
-#polar plot
+# Polar plot (angle=phi, radius=theta)
 ax3 = fig.add_subplot(1, 3, 3, projection='polar')
-surf = ax3.pcolormesh(Phi, Theta, Y_prob, cmap=cmap, norm=norm, shading='auto')
-fig.colorbar(sm, ax=ax3, label="Probability density")
-ax.set_title(f'Polar plot l={l} m={m}')
+ax3.pcolormesh(Phi, Theta, Y_prob, cmap=cmap, norm=norm, shading='auto')
+fig.colorbar(sm, ax=ax3, label="Probability density (Y_real^2)")
+ax3.set_title(f'Polar plot (real tesseral) l={l} m={m_in}')
 
 plt.tight_layout()
 plt.show()

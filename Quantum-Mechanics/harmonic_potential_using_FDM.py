@@ -4,7 +4,7 @@ from scipy.special import hermite, factorial
 
 hbar = 1.05457e-34
 m = 9.109e-31
-omega = 5.34e21
+omega = 5.34e9
 x_o = np.sqrt(hbar/(m*omega))
 print(f"oscillator length: {round(x_o*1e9, 6)} nm")
 N = 500
@@ -25,6 +25,7 @@ for i in range(N):
         H[i, i+1] = alpha
 
 eigen_value, eigen_vector = np.linalg.eigh(H)
+print("The Energy eigenvalues are: ", eigen_value[:3], end='\n')
 fig = plt.figure(figsize=(15,6))
 linestyles = ['-', '--', '-.', ':']
 
@@ -45,13 +46,16 @@ ax.legend()
 ax.grid(True)
 
 ax1 = fig.add_subplot(1,2,2)
+E = []
 for n in range(3):
+    E.append((n+1/2)*hbar*omega)
     xi = x / x_o
     Hn = hermite(n)(xi)
     prefactor = 1.0 / (np.sqrt(2**n * factorial(n))) * (1.0/np.pi**0.25 / np.sqrt(x_o))
     psi_n = prefactor * Hn * np.exp(-xi**2/2)
     ax1.plot(x*1e9, psi_n, linestyle=linestyles[i % len(linestyles)], label=f"n={n}")
 
+print("The Energy eigenvalue analytically: ",E)
 ax1.set_title("Analytical Harmonic Potential")
 ax1.set_xlabel("x (nm)")
 ax1.set_ylabel("ψ(x)")
