@@ -12,7 +12,7 @@ To know more about each topic visit **[Wiki](https://github.com/Ashwin2583/Compu
 >> The program inputs a single guess and give the roots of the function defined as output. This method requires both the function and derivative of that function to be defined in the program. <br>
 >> **[Finding roots using Newton-Raphson](https://github.com/Ashwin2583/Computational-Physics/blob/master/Mathematical-Physics/Root-Finding-Algorithm/newton.py)** 
 >>
->> ### 3. Secant Method
+>> ### 3. [Secant Method](https://github.com/Ashwin2583/Computational-Physics/wiki/Secant-Method)
 >> The program inputs two guesses and gives the root of the equation as outputs. The function for which the roots are determined is defined at the top of the program. <br>
 >> **[Finding roots using Secant](https://github.com/Ashwin2583/Computational-Physics/blob/master/Mathematical-Physics/Root-Finding-Algorithm/secant.py)**
 >>
