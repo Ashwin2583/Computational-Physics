@@ -6,7 +6,7 @@ m = 9.109e-31
 L = 1.5e-9        # domain length
 N = 500         # number of grid points
 a = 1e-9        # finite well width
-V0 = 50 * 1.602e-19   # well depth (50 eV in Joules)
+V0 = 3.2e-19 #2 * 1.602e-19   # well depth (50 eV in Joules)
 
 x = np.linspace(-L, L, N)
 dx = x[1] - x[0]
@@ -27,11 +27,13 @@ for i in range(N):
         H[i, i+1] = coeff
 
 eigen_value, eigen_vector = np.linalg.eigh(H)
+energy_FDM = eigen_value[:3]
 
 plt.figure(figsize=(15,9))
 linestyles = ['-', '--', '-.', ':']
-
+print("Energy values calculated using FDM", end='\n')
 for i in range(3):
+    print(f"state {i}",energy_FDM[i])
     psi = eigen_vector[:,i]
     norm = np.sqrt(np.trapezoid(np.abs(psi)**2, x))  # continuous normalization
     psi = psi / norm

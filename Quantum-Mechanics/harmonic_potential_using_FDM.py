@@ -25,12 +25,14 @@ for i in range(N):
         H[i, i+1] = alpha
 
 eigen_value, eigen_vector = np.linalg.eigh(H)
-print("The Energy eigenvalues are: ", eigen_value[:3], end='\n')
+energy_FDM = eigen_value[:3]
 fig = plt.figure(figsize=(15,6))
 linestyles = ['-', '--', '-.', ':']
 
 ax = fig.add_subplot(1,2,1)
+print("Energy values calculated using FDM", end='\n')
 for i in range(3):
+    print(f"state {i}",energy_FDM[i])
     psi = eigen_vector[:,i]
     norm = np.sqrt(np.trapezoid(np.abs(psi)**2, x))
     psi_scaled = psi / norm
@@ -46,16 +48,16 @@ ax.legend()
 ax.grid(True)
 
 ax1 = fig.add_subplot(1,2,2)
-E = []
+print("Energy values calculated analytically", end='\n')
 for n in range(3):
-    E.append((n+1/2)*hbar*omega)
+    E_n = (n+1/2)*hbar*omega
+    print(f"state {n}",E_n)
     xi = x / x_o
     Hn = hermite(n)(xi)
     prefactor = 1.0 / (np.sqrt(2**n * factorial(n))) * (1.0/np.pi**0.25 / np.sqrt(x_o))
     psi_n = prefactor * Hn * np.exp(-xi**2/2)
     ax1.plot(x*1e9, psi_n, linestyle=linestyles[i % len(linestyles)], label=f"n={n}")
 
-print("The Energy eigenvalue analytically: ",E)
 ax1.set_title("Analytical Harmonic Potential")
 ax1.set_xlabel("x (nm)")
 ax1.set_ylabel("ψ(x)")
