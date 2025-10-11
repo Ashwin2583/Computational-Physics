@@ -32,7 +32,7 @@ linestyles = ['-', '--', '-.', ':']
 ax = fig.add_subplot(1,2,1)
 print("Energy values calculated using FDM", end='\n')
 for i in range(3):
-    print(f"state {i}",energy_FDM[i])
+    print(f"state {i}",energy_FDM[i]/(1.602e-19))
     psi = eigen_vector[:,i]
     norm = np.sqrt(np.trapezoid(np.abs(psi)**2, x))
     psi_scaled = psi / norm
@@ -51,7 +51,7 @@ ax1 = fig.add_subplot(1,2,2)
 print("Energy values calculated analytically", end='\n')
 for n in range(3):
     E_n = (n+1/2)*hbar*omega
-    print(f"state {n}",E_n)
+    print(f"state {n}",E_n/(1.602e-19))
     xi = x / x_o
     Hn = hermite(n)(xi)
     prefactor = 1.0 / (np.sqrt(2**n * factorial(n))) * (1.0/np.pi**0.25 / np.sqrt(x_o))

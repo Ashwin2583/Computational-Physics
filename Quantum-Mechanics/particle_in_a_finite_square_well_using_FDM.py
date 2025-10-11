@@ -33,7 +33,7 @@ plt.figure(figsize=(15,9))
 linestyles = ['-', '--', '-.', ':']
 print("Energy values calculated using FDM", end='\n')
 for i in range(3):
-    print(f"state {i}",energy_FDM[i])
+    print(f"state {i}",energy_FDM[i]/(1.602e-19))
     psi = eigen_vector[:,i]
     norm = np.sqrt(np.trapezoid(np.abs(psi)**2, x))  # continuous normalization
     psi = psi / norm

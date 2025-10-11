@@ -60,8 +60,8 @@ plt.figure()
 x_vals = np.linspace(-2*a, 2*a, 500)
 for parity, s in roots:
     k = 2*s/a
-    E = (h_cut**2 * k**2)/(2*m)
-    print(f"Energy for {parity}: {E}")
+    E = (h_cut**2 * k**2)/(2*m) - V_o
+    print(f"Energy for {parity}: {E/1.602e-19}")
     kappa = np.sqrt(2*m*(V_o - E))/h_cut
     if parity == "even":
         psi_even = [wavefunction(x, s, "even", k, kappa) for x in x_vals]

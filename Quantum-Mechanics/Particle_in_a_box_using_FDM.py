@@ -28,7 +28,7 @@ linestyles = ['-', '--', '-.', ':']
 ax = fig.add_subplot(1,2,1)
 print("Energy values calculated using FDM", end='\n')
 for i in range(3):
-    print(f"state {i+1}",energy_FDM[i])
+    print(f"state {i+1}",energy_FDM[i]/1.602e-19)
     psi_inner = eigen_vector[:, i]
     norm = np.sqrt(np.trapezoid(np.abs(psi_inner)**2, x[1:-1]))
     psi_inner = psi_inner / norm
@@ -53,7 +53,7 @@ ax1 = fig.add_subplot(1,2,2)
 print("Energy values calculated analytically", end='\n')
 for n in range(1, 4):
     E_n = ((hbar**2)*(np.pi**2)*(n**2))/(2*m*(a**2))
-    print(f"state {n}",E_n)
+    print(f"state {n}",E_n/(1.602e-19))
     psi_n = np.sqrt(2/a) * np.sin(n * np.pi * (x + a/2) / a)
     ax1.plot(x*1e9, psi_n, linestyle=linestyles[n % len(linestyles)], label=f"State {n+1}")
 ax1.axvline(-a*1e9/2, color="k", linestyle="--")
