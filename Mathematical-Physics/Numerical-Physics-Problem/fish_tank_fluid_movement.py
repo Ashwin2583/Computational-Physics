@@ -11,7 +11,7 @@ c = 1480              # m/s, speed of sound in water
 f = 1000              # frequency in Hz
 omega = 2 * np.pi * f
 k = omega / c         # wavenumber
-alpha = 0.1           # damping coefficient (Np/m)
+alpha = 0.8           # damping coefficient (Np/m)
 
 # Grid
 x = np.linspace(0, Lx, nx)
