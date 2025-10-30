@@ -2,12 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 hbar = 1973
-m = 0.511e6
-e = 3.795
+m = 940e6
 n = 1000
+D = 0.755501
+a = 1.44
+r_0 = 0.131349
 r = np.linspace(2e-2,20,n,endpoint=False)
+r_dash = (r-r_0)/r
 dx = r[1] - r[0]
-V = -(e**2) / r
+V = D*((np.exp(-2*a*r_dash))-(np.exp(-a*r_dash)))
 
 coeff = (hbar**2)/(2*m*dx**2)
 H = np.zeros((n,n))
@@ -29,7 +32,7 @@ fig = plt.figure(figsize=(18,10))
 ax_u = fig.add_subplot(1,2,1)
 u_2 = []
 for i in range(2):
-    print(f"Energy state {i+1}: ",energies[i])
+    print(f"Energy state {i+1}: ",round(energies[i],3))
     u = eigen_vector[:,i]
     norm = np.sqrt(np.sum(u**2) * dx)
     u_normalized = u / norm
@@ -40,7 +43,7 @@ for i in range(2):
 
 ax_u.set_xlabel("r")
 ax_u.set_ylabel("u(r)")
-ax_u.set_xlim(0,10)
+ax_u.set_xlim(0,7)
 ax_u.set_title("Eigenstates u(r)")
 ax_u.grid(True)
 ax_u.legend()
@@ -51,7 +54,7 @@ for j in range(2):
 
 ax_u2.set_xlabel("r")
 ax_u2.set_ylabel("u(r)**2")
-ax_u2.set_xlim(0,8)
+ax_u2.set_xlim(0,6)
 ax_u2.set_title("Probability density P(r)")
 ax_u2.grid(True)
 ax_u2.legend()
