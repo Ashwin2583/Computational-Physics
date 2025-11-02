@@ -6,7 +6,6 @@ hbar = 1.05457e-34
 m = 9.109e-31
 omega = 5.34e9
 x_o = np.sqrt(hbar/(m*omega))
-print(f"oscillator length: {round(x_o*1e9, 6)} nm")
 N = 500
 L = 12*x_o
 
