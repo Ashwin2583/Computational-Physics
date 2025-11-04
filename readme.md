@@ -27,3 +27,4 @@ To know more about each topic visit **[Wiki](https://github.com/Ashwin2583/Compu
 >> **[Floating Depth](https://github.com/Ashwin2583/Computational-Physics/blob/master/Mathematical-Physics/Numerical-Physics-Problem/Dept_of_sphere.py)**
 
 
+## **[Quantum Mechanics](Quantum-Mechanics/)**
