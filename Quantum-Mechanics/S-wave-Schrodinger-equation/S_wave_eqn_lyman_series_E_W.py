@@ -24,7 +24,7 @@ E_0 = eigen_val[0]
 E_100 = eigen_val[100]
 
 wave = (0 - E_0)/(h_c*(2*np.pi))
-print("Ground state energy: ",E_0, "eV")
-print("101th state energy: ",E_100, "ev")
-print("Wavenumber: ",wave, "A")
-print("The wavelength: ", (1/wave), "A")
+print("Ground state energy: ",E_0, "eV") 
+print("101th state energy: ",E_100, "ev") #bound state is enough E_100 will not exist
+print("Wavenumber: ",wave, "A") #The energy value at infinity is approx 0 hence the value here is 0-E_0/2pi*hc
+print("The wavelength: ", (1/wave), "A") #wavenumber is 1/wavelength
