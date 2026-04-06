@@ -1,8 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = [2,4,6,8,10]
-y = [4.077,11.084,30.128,81.897,222.62]
+#Inputs
+x = [2,4,6,8,10] #Add the x values here
+y = [4.077,11.084,30.128,81.897,222.62] #Add the y values here
+
 log_y = np.log(y)
 sum_logy = sum(log_y)  
 n = len(x)

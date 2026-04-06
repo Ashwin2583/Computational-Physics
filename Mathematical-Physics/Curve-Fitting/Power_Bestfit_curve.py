@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = [1,2,3,4,5]
-y = [2,5.66,10.39,16,22.36]
+#Inputs
+x = [1,2,3,4,5] #Add the x values here
+y = [2,5.66,10.39,16,22.36] #Add the y values here
 
 n = len(x)
 sum_x = sum(x)

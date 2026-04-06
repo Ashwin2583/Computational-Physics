@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#Inputs
 x = [0.147,0.166,0.192,0.210] # Add the x-values here
 y = [1.86,1.98,1.99,2.72] # Add the y-values here
 
