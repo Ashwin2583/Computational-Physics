@@ -16,6 +16,6 @@ int main(){
     std :: cin >> input;
     
     //Output
-    std :: cout << "Factorial is: "<< factorial(input);
+    std :: cout << "Factorial of "<< input <<" is: "<< factorial(input);
     return 0;
 }

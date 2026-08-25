@@ -1,24 +1,15 @@
 #include <iostream>
 using namespace std;
 
-//GCD Function
-int gcd(int a, int b){
-    if(a==0 || b ==0) //Checking for the zero inputs
-        return max(a,b);
-
-    //Minimum factor algorithm
-    int result = min(a,b); //Extract minimum values
-    while (result>0){
-        if (a % result == 0 && b % result == 0){
-            break;
-        }
-        result--;
-    }
-    return result;
+//Euclidean ALgorithm
+//Unsigned variables a and b
+unsigned int gcd(unsigned int a, unsigned int b){
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
 }
-
 int main(){
-    int a,b;
+    unsigned int a,b;
 
     //The input
     std::cout << "Enter number a: ";
