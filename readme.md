@@ -16,6 +16,17 @@ To know more about each topic visit **[Wiki](https://github.com/Ashwin2583/Compu
 >> The program inputs two guesses and gives the root of the equation as outputs. The function for which the roots are determined is defined at the top of the program. <br>
 >> **[Finding roots using Secant](https://github.com/Ashwin2583/Computational-Physics/blob/master/Mathematical-Physics/Root-Finding-Algorithm/secant.py)**
 >>
+> ## [Curve Fitting](Mathematical-Physics/Curve-Fitting/)
+>> ### Best-Fit Curves
+>> **[Linear Best-Fit Line](Mathematical-Physics/Curve-Fitting/Linear_Bestfit_line.py)** <br>
+>> **[Exponential Best-Fit Curve](Mathematical-Physics/Curve-Fitting/exponential_Bestfit_curve.py)** <br>
+>> **[Power Best-Fit Curve](Mathematical-Physics/Curve-Fitting/Power_Bestfit_curve.py)**
+>>
+>> ### Weighted Best-Fit Curves
+>> **[Weighted Linear Best-Fit](Mathematical-Physics/Curve-Fitting/weighted_bestfit_linear.py)** <br>
+>> **[Weighted Exponential Best-Fit](Mathematical-Physics/Curve-Fitting/weighted_bestfit_exp.py)** <br>
+>> **[Weighted Power Best-Fit](Mathematical-Physics/Curve-Fitting/weighted_bestfit_power.py)**
+>>
 >
 > ## [Numerical Physics Problems](Mathematical-Physics/Numerical-Physics-Problem/)
 >> ### 1. Projectile Motion
